@@ -6,6 +6,7 @@
 
 body {
     background-color: rgb(33, 30, 30) !important;
+    min-height: 100vh;
 }
 
 
@@ -30,6 +31,10 @@ body {
 .offcanvas-header{
     background-color: rgb(205, 37, 37);  
 }
+
+  .offcanvas-top{
+    height: 36.5vh !important;
+}  
 
 .btn-a::after,
 .btn-a::before {
@@ -211,6 +216,55 @@ footer {margin-top: 40vh;
     font-size: 30px;
 }
 
+.div-footer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.a-footer:hover {
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    font-size: 30px;
+}
+
+.instagram-color:hover{
+    color:rgb(232, 100, 171)
+}
+.facebook-color:hover{
+    color:rgb(63, 93, 247)
+}
+.whatsapp-color:hover{
+    color:rgb(111, 226, 145)
+}
+
+
+#instagram-f{
+    transition: 1.3s;
+}
+
+#instagram-f:hover{
+    transform: scale(130%);
+}
+
+#facebook-f{
+    transition: 1.3s;
+}
+
+#facebook-f:hover{
+    transform: scale(130%);
+}
+
+
+#whatsapp-f{
+    transition: 1.3s;
+}
+
+#whatsapp-f:hover{
+    transform: scale(130%);
+}
+
+
 .cohort {
     color: rgb(255, 76, 76);
     margin-right: 50px;
@@ -232,6 +286,18 @@ footer {margin-top: 40vh;
     cursor: pointer;
 }
 
+
+@media only screen and (max-width: 1090px){
+    .form-control, .btn-outline-danger{
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 1324px){
+    .div-cards>.card{
+        margin-top: 15px;
+    }
+}
 
 
 /************************************* Contact *****************************************/
