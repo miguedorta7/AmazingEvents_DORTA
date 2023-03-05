@@ -59,7 +59,7 @@ body {
 }
 
 .carousel-home1 {
-    background-image: url(../img/gallery_events/Empresa.jpg);
+    background-image: url(../img/gallery_events/empresa-home.png);
     background-position: bottom;
     background-size: cover;
 }
@@ -228,6 +228,7 @@ footer {margin-top: 40vh;
     font-size: 30px;
 }
 
+
 .instagram-color:hover{
     color:rgb(232, 100, 171)
 }
@@ -300,7 +301,20 @@ footer {margin-top: 40vh;
 }
 
 
+
+
 /************************************* Contact *****************************************/
+
+.body-contact{
+   /*  width: 100 vw !important; */
+   height: 100vh !important;
+   /* border: solid red !important; */
+}
+
+#form-contact{
+   position: relative;
+   bottom: 60px;
+}
 
 .div-contact{
     display: flex;
@@ -371,6 +385,8 @@ footer {margin-top: 40vh;
   }
 
 
+
+
   /***************************************** Details ****************************************/
 
 
@@ -421,8 +437,19 @@ footer {margin-top: 40vh;
     font-size: 19px;
   }
 
+  .footer-details{
+    margin-top: 132.1px;
+  }
+
   /***************************************** Stats ****************************************/
-  
+ 
+  .main-stats{
+    position: relative;
+    bottom: 2rem;
+  }
+
+
+
   .container{
     margin-top: 10vh;
     width: 600px;
@@ -454,3 +481,8 @@ footer {margin-top: 40vh;
     background-color:rgb(12, 141, 59) !important;
     border: solid #dc3545 2px !important;
 }
+
+footer{
+    margin-top: 0px;
+}
+
