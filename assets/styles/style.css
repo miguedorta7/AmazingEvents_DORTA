@@ -191,16 +191,39 @@ body {
 
 }
 
+main{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 1rem;
+    padding: 1 rem;
+    justify-content: center;
+    margin: 1 rem;
+}
+
 .div-cards {
-    margin: 10vh;
+    margin: 10vh ;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.card-img-top {
-    height: 180px;
+.card{
+    width: 20rem;
 }
+
+.card-text{
+    min-height: 5rem;
+}
+
+.card-img-top {
+    margin: 0.5rem 0.5rem;
+    width: 16.5rem !important;
+    height: 14rem !important;
+    object-fit: cover;
+    object-position: 50% 0%;
+    box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.39);
+}
+
 
 footer {margin-top: 40vh;
     padding: 5px;
@@ -245,7 +268,7 @@ footer {margin-top: 40vh;
 }
 
 #instagram-f:hover{
-    transform: scale(130%);
+    transform: scale(120%);
 }
 
 #facebook-f{
@@ -253,7 +276,7 @@ footer {margin-top: 40vh;
 }
 
 #facebook-f:hover{
-    transform: scale(130%);
+    transform: scale(120%);
 }
 
 
@@ -262,7 +285,7 @@ footer {margin-top: 40vh;
 }
 
 #whatsapp-f:hover{
-    transform: scale(130%);
+    transform: scale(120%);
 }
 
 
@@ -389,9 +412,10 @@ footer {margin-top: 40vh;
 
   /***************************************** Details ****************************************/
 
-
-   .div-details{
-    min-height: 400px;
+  
+  .div-details{
+      width: 100% !important;
+      min-height: 400px;
       display: flex;
       flex-wrap: wrap;
       padding: 22px;
@@ -417,28 +441,28 @@ footer {margin-top: 40vh;
     margin-left: 5px;
     text-align: start;
     justify-content: space-evenly;
-  }
+}
 
-  .card-body-datails>h5{
+.card-body-datails>h5{
     font-size: 50px;
     color: aliceblue;
-  }
+}
 
-  .card-body-datails>p{
+.card-body-datails>p{
     color: white;
-  }
+}
 
-  .card-body-datails>p>small{
+.card-body-datails>p>small{
     color: white !important;
-  }
+}
 
-  .ul-details{
+.ul-details{
     color: white;
     font-size: 19px;
-  }
+}
 
-  .footer-details{
-    margin-top: 132.1px;
+.footer-details{
+    margin-top: 99px;
   }
 
   /***************************************** Stats ****************************************/
