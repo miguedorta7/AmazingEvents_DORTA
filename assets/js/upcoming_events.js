@@ -1,6 +1,5 @@
-import data from "./amazing.js";
 
-let cardsUpcoming = [];
+/*  let cardsUpcoming = [];
 
 function upcomingEvents(events, date) {
   for (let event of events) {
@@ -31,4 +30,14 @@ cardsUpcoming.forEach((event) => {
   fragment.appendChild(div);
 });
 
-element.appendChild(fragment);
+element.appendChild(fragment);  */
+
+
+import data from "./amazing.js";
+import {drawCards, futureEvents } from "./functions_export.js";
+
+let  elementFuturos= document.getElementById("elementos-upcoming")
+
+drawCards(futureEvents(data), elementFuturos)
+
+

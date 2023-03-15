@@ -1,6 +1,5 @@
-import data from "./amazing.js";
 
-let cardsUpcoming = [];
+/* let cardsUpcoming = [];
 
 function upcomingEvents(events, date) {
   for (let event of events) {
@@ -13,8 +12,9 @@ function upcomingEvents(events, date) {
 
 upcomingEvents(data.events, data.currentDate);
 
-const element = document.getElementById("elementos-pasados");
+const elementPast = document.getElementById("elementos-pasados");
 const fragment = document.createDocumentFragment();
+
 cardsUpcoming.forEach((event) => {
   const div = document.createElement("div");
   div.innerHTML = ` <div class="card mx-2 my-2">
@@ -31,4 +31,13 @@ cardsUpcoming.forEach((event) => {
   fragment.appendChild(div);
 });
 
-element.appendChild(fragment);
+elementPast.appendChild(fragment);
+ */
+
+import data from "./amazing.js";
+import { drawCards, pastEvents } from "./functions_export.js";
+
+
+let elementPasados= document.getElementById("elementos-pasados")
+
+drawCards(pastEvents(data),elementPasados)
