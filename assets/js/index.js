@@ -1,8 +1,11 @@
 import data from "./amazing.js";
+import { crearCheckBoxes, drawCards} from "./functions_export.js";
+
+/* const ruta ="./pages/"; */
+
 
 let cardsIndex = [];
-
-function allEvents(events) {
+ function allEvents(events) {
   for (let event of events) {
     cardsIndex.push(event);
   }
@@ -29,24 +32,6 @@ cardsIndex.forEach((event) => {
   fragment.appendChild(div);
 });
 
+
 element.appendChild(fragment);
-
-
-//Mostrar las diferentes categorías
-const formCategories = document.getElementsByClassName('formCategories')[0];
-let fragmentForm = document.createDocumentFragment();
-let prevCategory;
-for (let event of data.events) {
-    if (event.category !== prevCategory) {
-        let div = document.createElement('div');
-        div.classList="d-flex flex-wrap";
-        div.innerHTML=`
-        <label class="d-inline-flex my-2 mx-5">
-        <input class="form-check-input me-3" name="category1" type="checkbox">${event.category}
-        </label>`;
-        fragmentForm.appendChild(div);
-    }
-prevCategory = event.category;
-}
-let categories = formCategories.appendChild(fragmentForm);
-
+crearCheckBoxes(data.events)

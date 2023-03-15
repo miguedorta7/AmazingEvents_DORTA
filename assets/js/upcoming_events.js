@@ -1,5 +1,4 @@
-
-/*  let cardsUpcoming = [];
+/* let cardsUpcoming = [];
 
 function upcomingEvents(events, date) {
   for (let event of events) {
@@ -34,10 +33,10 @@ element.appendChild(fragment);  */
 
 
 import data from "./amazing.js";
-import {drawCards, futureEvents } from "./functions_export.js";
+import {drawCards, futureEvents, crearCheckBoxes} from "./functions_export.js";
 
 let  elementFuturos= document.getElementById("elementos-upcoming")
 
 drawCards(futureEvents(data), elementFuturos)
 
-
+crearCheckBoxes(data.events)

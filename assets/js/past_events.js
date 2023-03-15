@@ -1,4 +1,5 @@
 
+
 /* let cardsUpcoming = [];
 
 function upcomingEvents(events, date) {
@@ -35,9 +36,11 @@ elementPast.appendChild(fragment);
  */
 
 import data from "./amazing.js";
-import { drawCards, pastEvents } from "./functions_export.js";
+import { drawCards, pastEvents,crearCheckBoxes  } from "./functions_export.js";
 
 
 let elementPasados= document.getElementById("elementos-pasados")
 
 drawCards(pastEvents(data),elementPasados)
+ 
+crearCheckBoxes(data.events)

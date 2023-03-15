@@ -1,17 +1,19 @@
+//Función que recorre los eventos pasados
 function pastEvents(myData){
   let arrayPasados = [];
   arrayPasados = myData.events.filter(myEvent => Date.parse(myEvent.date) < Date.parse(myData.currentDate));
   return arrayPasados;
 };
 
+//Función que recorre los eventos futuros
 function futureEvents(myData){
   let arrayFuturos = [];
   arrayFuturos = myData.events.filter(myEvent => Date.parse(myEvent.date) > Date.parse(myData.currentDate));
   return arrayFuturos;
 };
 
-
-function drawCards(arr, elements) {
+//Función que dibuja las Cards
+ function drawCards(arr, elements) {
   let fragment = document.createDocumentFragment();
   for (let i = 0; i < arr.length; i++) {
     let card = document.createElement("div");
@@ -24,37 +26,64 @@ function drawCards(arr, elements) {
     <p class="card-text">${arr[i].description}</p>
     <div class="d-flex justify-content-between">
         <p class="pt-2">Price: $${arr[i].price}</p>
-        <a href="../pages/details.html" class="btn btn-danger">See More</a>
+        <a href="../pages/details.html?id=${arr[i]._id}" class="btn btn-danger">See More</a>
     </div>
 </div>
 </div>`;
     fragment.appendChild(card);      
   }
   elements.appendChild(fragment);
+} 
+
+
+const contenedorCheck = document.getElementById("barra-opciones")
+
+
+//Función que crea los checkboxes
+function crearCheckBoxes(array){
+    let arraycategory = array.map(element => element.category)
+    let setCategory = new Set(arraycategory)
+    let arrayChecks = Array.from(setCategory)
+    let checkboxes = ''
+    arrayChecks.forEach(category => {
+        checkboxes += ` 
+        <div class="form-check form-check-inline check-options">
+          <input class="form-check-input radio-circles " type="checkbox"
+            name="inlineRadioOptions" id="inlineCheckbox1" value="${category}">
+          <label class="form-check-label" for="inlineCheckbox1">${category}</label>
+        </div>`
+    })
+    contenedorCheck.innerHTML = checkboxes
 }
 
 
 
-
-/* 
-//Mostrar las diferentes categorías
-const formCategories = document.getElementsByClassName('formSearch');
-let fragmentForm = document.createDocumentFragment();
-let prevCategory;
-for (let event of data.events) {
-    if (event.category !== prevCategory) {
-        let div = document.createElement('div');
-        div.classList="d-flex flex-wrap";
-        div.innerHTML=`
-        <label class="d-inline-flex my-2 mx-5">
-        <input class="form-check-input me-3" name="category1" type="checkbox">${event.category}
-        </label>`;
-        fragmentForm.appendChild(div);
-    }
-    prevCategory = event.category;
+function detailsCards(event, container) {
+  let div = document.createElement('div');
+  div.classList = "row g-1 div-card-details"
+  div.innerHTML=`
+  <div class="col-md-6 div-img-details">
+    <img src="${event.image}" class="img-fluid rounded-start
+      img-details" alt="...">
+  </div>
+  <div class="col-md-6">
+    <div class="card-body card-body-datails">
+      <h5 class="card-title ">Data</h5>
+      <ul class="ul-details">
+        <li>Name: ${event.name}</li>
+        <li>Date: ${event.date}</li>
+        <li>Description: ${event.description}</li>
+        <li>Category: ${event.category}</li>
+        <li>Place: ${event.place}</li>
+        <li>Capacity:  ${event.capacity}</li>
+        <li>Assistance or estimate:  ${event.assistance}</li>
+        <li>Price: ${event.price}</li>
+      </ul>
+    </div>`;
+  return container.appendChild(div)
 }
-let categories = formCategories.appendChild(fragmentForm);
 
 
 
-export {pastEvents, futureEvents, drawCards}; */
+export {pastEvents, futureEvents, drawCards, detailsCards, crearCheckBoxes};
+
