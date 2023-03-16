@@ -1,36 +1,3 @@
-/* let cardsUpcoming = [];
-
-function upcomingEvents(events, date) {
-  for (let event of events) {
-    if (event.date > date) {
-      cardsUpcoming.push(event);
-    }
-  }
-  return cardsUpcoming;
-}
-
-upcomingEvents(data.events, data.currentDate);
-
-const element = document.getElementById("elementos-upcoming");
-const fragment = document.createDocumentFragment();
-cardsUpcoming.forEach((event) => {
-  const div = document.createElement("div");
-  div.innerHTML = ` <div class="card mx-2 my-2">
-<img src="${event.image}" class="card-img-top" style="width: 18.5rem !important;  alt="${event.category}">
-<div class="card-body text-center">
-    <h5 class="card-title">${event.name}</h5>
-    <p class="card-text">${event.description}</p>
-    <div class="d-flex justify-content-between">
-        <p class="pt-2">Price: $${event.price}</p>
-        <a href="../pages/details.html" class="btn btn-danger">See More</a>
-    </div>
-</div>
-</div>`;
-  fragment.appendChild(div);
-});
-
-element.appendChild(fragment);  */
-
 
 import data from "./amazing.js";
 import {drawCards, futureEvents, crearCheckBoxes} from "./functions_export.js";
@@ -40,3 +7,36 @@ let  elementFuturos= document.getElementById("elementos-upcoming")
 drawCards(futureEvents(data), elementFuturos)
 
 crearCheckBoxes(data.events)
+
+
+const input= document.getElementById('inputBuscador')
+const contenedorCheck = document.getElementById('barra-opciones')
+
+input.addEventListener("input",()=>{
+  window.event.preventDefault()
+  elementFuturos.innerHTML='';
+  let filtradoPornombre = filtrarPorTexto(futureEvents(data),input.value)
+  let filtradoPorCategoria = filterByCategories(filtradoPornombre)
+  drawCards(filtradoPorCategoria,elementFuturos)
+})
+
+contenedorCheck.addEventListener("change",()=>{
+  window.event.preventDefault()
+  elementFuturos.innerHTML='';
+  let filtradoPornombre = filtrarPorTexto(futureEvents(data),input.value)
+  let filtradoPorCategoria = filterByCategories(filtradoPornombre)
+  drawCards(filtradoPorCategoria,elementFuturos)
+})
+
+
+function filtrarPorTexto(array,texto) {
+ let filterArray = array.filter(element => element.name.toLowerCase().includes(texto.toLowerCase()))
+ return filterArray
+}
+
+
+function filterByCategories(array){
+  const checkedValues = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+  return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
+}
+

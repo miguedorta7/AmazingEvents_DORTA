@@ -13,25 +13,27 @@ function futureEvents(myData){
 };
 
 //Función que dibuja las Cards
- function drawCards(arr, elements) {
-  let fragment = document.createDocumentFragment();
-  for (let i = 0; i < arr.length; i++) {
-    let card = document.createElement("div");
-    card.classList.add("col");
-    card.style.width = "25rem";
-    card.innerHTML =  ` <div class="card mx-2 my-2">
-<img src="${arr[i].image}" class="card-img-top" style="width: 18.5rem !important;  alt="${arr[i].category}">
-<div class="card-body text-center">
-    <h5 class="card-title">${arr[i].name}</h5>
-    <p class="card-text">${arr[i].description}</p>
-    <div class="d-flex justify-content-between">
-        <p class="pt-2">Price: $${arr[i].price}</p>
-        <a href="../pages/details.html?id=${arr[i]._id}" class="btn btn-danger">See More</a>
-    </div>
-</div>
-</div>`;
-    fragment.appendChild(card);      
-  }
+ function drawCards(events, elements,ruta ='./') {
+   if (events.length == 0) {
+    elements.innerHTML= `<h2 style=color:white>There are no matches in your search</h2>`
+    return
+  } 
+  const fragment = document.createDocumentFragment();
+  events.forEach((event) => {
+    const div = document.createElement("div");
+    div.innerHTML = ` <div class="card mx-2 my-2">
+      <img src="${event.image}" class="card-img-top" style="width: 18.5rem !important;  alt="${event.category}">
+      <div class="card-body text-center">
+      <h5 class="card-title">${event.name}</h5>
+      <p class="card-text">${event.description}</p>
+      <div class="d-flex justify-content-between">
+      <p class="pt-2">Price: $${event.price}</p>
+      <a href="${ruta}details.html?id=${event._id}"" class="btn btn-danger">See More</a>
+      </div>
+      </div>
+      </div>`;
+    fragment.appendChild(div);      
+  })
   elements.appendChild(fragment);
 } 
 
@@ -79,6 +81,9 @@ function detailsCards(event, container) {
         <li>Assistance or estimate:  ${event.assistance}</li>
         <li>Price: ${event.price}</li>
       </ul>
+      <div class="d-flex justify-content-end">
+                <a href="../index.html" class="btn btn-details align-self-center go bg-success">Back to Home</a>
+            </div>
     </div>`;
   return container.appendChild(div)
 }

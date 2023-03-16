@@ -132,16 +132,18 @@
           <label class="form-check-label " for="inlineCheckbox6">Food Fair</label>
         </div> -->
       </div>
-        <div class="form-check form-check-inline">
-          <form id="buscador-opciones" class="d-flex justify-content-end"
-            role="search">
-            <input class="form-control me-2" type="search" placeholder="Search"
-              aria-label="Search">
-            <button class="btn btn-outline-danger" type="submit"><i class="bi
-                bi-search"></i></button>
-          </form>
-          <ion-icon name="search-outline"></ion-icon>
-        </div>
+      <div class="form-check form-check-inline" >
+        <form id="buscador-opciones" class="d-flex justify-content-end "
+          role="search">
+          <div id="formCategorias" class="d-flex flex-wrap formCategories">
+          </div>
+          <input id="inputBuscador" class="form-control me-2" type="search" placeholder="Search"
+          aria-label="Search">
+          <button id="buttonAccess" class="btn btn-outline-danger" type="submit"><i class="bi
+              bi-search"></i></button>
+        </form>
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
     </nav>
     <main>
       <div id="elementos-pasados" class="div-cards d-flex justify-content-around flex-wrap">
