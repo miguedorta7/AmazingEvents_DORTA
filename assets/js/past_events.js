@@ -1,46 +1,65 @@
+import { drawCards, pastEvents, crearCheckBoxes } from "./functions_export.js";
 
-import data from "./amazing.js";
-import { drawCards, pastEvents,crearCheckBoxes  } from "./functions_export.js";
+//Esta función nos permite traer de una Url todos los datos json.
+function datosDeApiJson() {
+  fetch("/assets/data/amazing.json")
+    .then((response) => response.json())
+    .then((datosEvent) => {
+      const elementPasados = document.getElementById("elementos-pasados");
 
+      //Drawcards pinta las cards correspondientes a past events
+      drawCards(pastEvents(datosEvent), elementPasados);
 
-const elementPasados= document.getElementById("elementos-pasados")
+      //Se crean los checkboxes en la pagina Past Events
+      crearCheckBoxes(datosEvent.events);
 
-drawCards(pastEvents(data),elementPasados)
- 
-crearCheckBoxes(data.events)
+      const input = document.getElementById("inputBuscador");
+      const contenedorCheck = document.getElementById("barra-opciones");
 
+      //este evento escucha lo que ingresamos en la barra del search
+      input.addEventListener("input", () => {
+        window.event.preventDefault();
+        elementPasados.innerHTML = "";
+        let filtradoPornombre = filtrarPorTexto(
+          pastEvents(datosEvent),
+          input.value
+        );
+        let filtradoPorCategoria = filterByCategories(filtradoPornombre);
+        drawCards(filtradoPorCategoria, elementPasados);
+      });
 
-const input= document.getElementById('inputBuscador')
-const contenedorCheck = document.getElementById('barra-opciones')
+      //este evento escucha si existe algun cambio en los checksboxes
+      contenedorCheck.addEventListener("change", () => {
+        window.event.preventDefault();
+        elementPasados.innerHTML = "";
+        let filtradoPornombre = filtrarPorTexto(
+          pastEvents(datosEvent),
+          input.value
+        );
+        let filtradoPorCategoria = filterByCategories(filtradoPornombre);
+        drawCards(filtradoPorCategoria, elementPasados);
+      });
 
-input.addEventListener("input",()=>{
-  window.event.preventDefault()
-  elementPasados.innerHTML='';
-  let filtradoPornombre = filtrarPorTexto(pastEvents(data),input.value)
-  let filtradoPorCategoria = filterByCategories(filtradoPornombre)
-  drawCards(filtradoPorCategoria,elementPasados)
-})
+      //Esta funcion filtra por texto
+      function filtrarPorTexto(array, texto) {
+        let filterArray = array.filter((element) =>
+          element.name.toLowerCase().includes(texto.toLowerCase())
+        );
+        return filterArray;
+      }
+      //Esta funcion filtra por categorias
+      function filterByCategories(array) {
+        const checkedValues = Array.from(
+          document.querySelectorAll('input[type="checkbox"]:checked')
+        ).map((input) => input.value);
+        return checkedValues.length > 0
+          ? array.filter((e) => checkedValues.includes(e.category))
+          : array;
+      }
+    })
 
-contenedorCheck.addEventListener("change",()=>{
-  window.event.preventDefault()
-  elementPasados.innerHTML='';
-  let filtradoPornombre = filtrarPorTexto(pastEvents(data),input.value)
-  let filtradoPorCategoria = filterByCategories(filtradoPornombre)
-  drawCards(filtradoPorCategoria,elementPasados)
-})
-
-
-function filtrarPorTexto(array,texto) {
- let filterArray = array.filter(element => element.name.toLowerCase().includes(texto.toLowerCase()))
- return filterArray
+    //.catch nos permite detener todo lo que se ejecuta en caso de haber un error en el momento de la ejecucion.
+    .catch((error) => console.error(error));
 }
 
-
-function filterByCategories(array){
-  const checkedValues = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
-  return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
-}
-
-
-
-
+datosDeApiJson();

@@ -1,2 +1,2 @@
-import data from "./amazing.js";
+//import data from "./amazing.js";
 

@@ -1,23 +1,27 @@
 //Función que recorre los eventos pasados
-function pastEvents(myData){
+function pastEvents(myData) {
   let arrayPasados = [];
-  arrayPasados = myData.events.filter(myEvent => Date.parse(myEvent.date) < Date.parse(myData.currentDate));
+  arrayPasados = myData.events.filter(
+    (myEvent) => Date.parse(myEvent.date) < Date.parse(myData.currentDate)
+  );
   return arrayPasados;
-};
+}
 
 //Función que recorre los eventos futuros
-function futureEvents(myData){
+function futureEvents(myData) {
   let arrayFuturos = [];
-  arrayFuturos = myData.events.filter(myEvent => Date.parse(myEvent.date) > Date.parse(myData.currentDate));
+  arrayFuturos = myData.events.filter(
+    (myEvent) => Date.parse(myEvent.date) > Date.parse(myData.currentDate)
+  );
   return arrayFuturos;
-};
+}
 
 //Función que dibuja las Cards
- function drawCards(events, elements,ruta ='./') {
-   if (events.length == 0) {
-    elements.innerHTML= `<h2 style=color:white>There are no matches in your search</h2>`
-    return
-  } 
+function drawCards(events, elements, ruta = "./") {
+  if (events.length == 0) {
+    elements.innerHTML = `<h2 style=color:white>There are no matches in your search</h2>`;
+    return;
+  }
   const fragment = document.createDocumentFragment();
   events.forEach((event) => {
     const div = document.createElement("div");
@@ -32,38 +36,37 @@ function futureEvents(myData){
       </div>
       </div>
       </div>`;
-    fragment.appendChild(div);      
-  })
+    fragment.appendChild(div);
+  });
   elements.appendChild(fragment);
-} 
-
-
-const contenedorCheck = document.getElementById("barra-opciones")
-
-
-//Función que crea los checkboxes
-function crearCheckBoxes(array){
-    let arraycategory = array.map(element => element.category)
-    let setCategory = new Set(arraycategory)
-    let arrayChecks = Array.from(setCategory)
-    let checkboxes = ''
-    arrayChecks.forEach(category => {
-        checkboxes += ` 
-        <div class="form-check form-check-inline check-options">
-          <input class="form-check-input radio-circles " type="checkbox"
-            name="inlineRadioOptions" id="inlineCheckbox1" value="${category}">
-          <label class="form-check-label" for="inlineCheckbox1">${category}</label>
-        </div>`
-    })
-    contenedorCheck.innerHTML = checkboxes
 }
 
 
+const contenedorCheck = document.getElementById("barra-opciones");
 
+//Función que crea los checkboxes
+function crearCheckBoxes(array) {
+  let arraycategory = array.map((element) => element.category);
+  let setCategory = new Set(arraycategory);
+  let arrayChecks = Array.from(setCategory);
+  let checkboxes = "";
+  arrayChecks.forEach((category) => {
+    checkboxes += ` 
+        <div class="form-check form-check-inline check-options">
+          <input class="form-check-input radio-circles " type="checkbox"
+            name="inlineRadioOptions" id="${category}" value="${category}">
+          <label class="form-check-label" for="${category}">${category}</label>
+        </div>`;
+  });
+  contenedorCheck.innerHTML = checkboxes;
+}
+
+
+//Función que crea las cards en la pagina Details
 function detailsCards(event, container) {
-  let div = document.createElement('div');
-  div.classList = "row g-1 div-card-details"
-  div.innerHTML=`
+  let div = document.createElement("div");
+  div.classList = "row g-1 div-card-details";
+  div.innerHTML = `
   <div class="col-md-6 div-img-details">
     <img src="${event.image}" class="img-fluid rounded-start
       img-details" alt="...">
@@ -85,10 +88,7 @@ function detailsCards(event, container) {
                 <a href="../index.html" class="btn btn-details align-self-center go bg-success">Back to Home</a>
             </div>
     </div>`;
-  return container.appendChild(div)
+  return container.appendChild(div);
 }
 
-
-
-export {pastEvents, futureEvents, drawCards, detailsCards, crearCheckBoxes};
-
+export { pastEvents, futureEvents, drawCards, detailsCards, crearCheckBoxes };

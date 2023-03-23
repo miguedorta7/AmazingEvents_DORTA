@@ -225,7 +225,7 @@ main{
 }
 
 
-footer {margin-top: 40vh;
+footer {margin-top: 0vh;
     padding: 5px;
     display: flex;
     justify-content: space-between;
@@ -415,7 +415,7 @@ footer {margin-top: 40vh;
   
   .div-details{
       width: 100% !important;
-      min-height: 400px;
+      min-height: 470px;
       display: flex;
       flex-wrap: wrap;
       padding: 22px;
@@ -469,7 +469,7 @@ footer {margin-top: 40vh;
  
   .main-stats{
     position: relative;
-    bottom: 2rem;
+    bottom: 10rem;
   }
 
 
@@ -478,12 +478,13 @@ footer {margin-top: 40vh;
     margin-top: 10vh;
     width: 600px;
     border: solid #dc3545 px;
-    border-radius: 5px !important; 
+    border-radius: 5px !important;
+     
 }
 
 #container-tabla{
-    height: 500px !important;
-
+   /*  height: 600px !important; */
+    margin-top: 150px;
 }
 
 .thead-color{
@@ -506,7 +507,10 @@ footer {margin-top: 40vh;
     border: solid #dc3545 2px !important;
 }
 
-footer{
-    margin-top: 0px;
-}
 
+
+ @media (min-width: 320px) and (max-width: 767px) {
+    footer{
+        margin-top: 0px;
+    }
+}
