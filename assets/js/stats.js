@@ -9,38 +9,56 @@ function datosDeApiJson() {
   fetch("/assets/data/amazing.json")
     .then((response) => response.json())
     .then((datosEvent) => {
+      let eventos = datosEvent.events;
+
       //variable que filtra los eventos
       const eventosFiltrados = datosEvent.events.filter(
         (event) => event.date < datosEvent.currentDate
       );
+
       //Variable que filtra los eventos futuros
       const eventosFiltradosUpcoming = datosEvent.events.filter(
         (event) => event.date > datosEvent.currentDate
       );
-      //Variable que obtiene los resultados totales
-      const resultado = eventosFiltrados.sort((evento1, evento2) => {
-        return (
-          (evento1.assistance / evento1.capacity) * 100 -
-          (evento2.assistance / evento2.capacity) * 100
-        );
-      });
+
+      //Funcion que obtiene los eventos con menor porcentaje de asistencia.
+      function resultadosEventos() {
+        let resultado = eventos.sort((a, b) => {
+          let evento1 =
+            ((a.assistance ? a.assistance : a.estimate) / a.capacity) * 100;
+          let evento2 =
+            ((b.assistance ? b.assistance : b.estimate) / b.capacity) * 100;
+          if (evento1 < evento2) {
+            return -1;
+          }
+          if (evento1 > evento2) {
+            return 1;
+          }
+        });
+        return resultado;
+      }
+
+      console.log(resultadosEventos());
+
       //Variable que obtiene los resultados de mayor capacidad
       const resultadoMayorCapacidad = datosEvent.events
         .sort((evento1, evento2) => evento1.capacity - evento2.capacity)
-        .slice(-2);
+        .slice(-1);
       //Variable que obtiene los eventos de mayor asistencia
-      const eventoMayorAssistencia = resultado.slice(-1);
-      //Variable que obtiene los eventos de menor asistencia
-      const eventoMenorAsistencia = resultado.slice(0, 1);
-      asistencia(eventoMayorAssistencia[0], mayorAsistencia);
-      asistencia(eventoMenorAsistencia[0], menorAsistencia);
+      const eventoMenorAsistencia = resultadosEventos()[0];
+      console.log(eventoMenorAsistencia);
+      //Variable que obtiene los eventos de mayor asistencia
+      const eventoMayorAsistencia =
+        resultadosEventos()[resultadosEventos().length - 1];
+      console.log(eventoMayorAsistencia);
+      asistencia(eventoMayorAsistencia, mayorAsistencia);
+      asistencia(eventoMenorAsistencia, menorAsistencia);
       asistencia(resultadoMayorCapacidad[0], mayorCapacidad);
 
-	  //Función que obtiene los eventos de mayor y menor asistencia
-	  function asistencia(objeto, elemento) {
-		elemento.innerHTML = objeto.name;
-	  }
-	  
+      //Función que obtiene los eventos de mayor y menor asistencia
+      function asistencia(objeto, elemento) {
+        elemento.innerHTML = objeto.name;
+      }
 
       //UPCOMING EVENTS
 
@@ -62,7 +80,7 @@ function datosDeApiJson() {
         categorias[propiedadEventos.category].estimate +=
           propiedadEventos.estimate;
       });
-    
+
       let subirTabla = "";
       for (const categoria in categorias) {
         const precio = categorias[categoria].price;
@@ -78,7 +96,7 @@ function datosDeApiJson() {
         };
         subirTabla += template();
       }
-	  //Se insertan los datos en la tabla de Upcoming Events
+      //Se insertan los datos en la tabla de Upcoming Events
       tablaUP.innerHTML = subirTabla;
 
       //PAST EVENTS
@@ -115,10 +133,9 @@ function datosDeApiJson() {
         };
         subirTabla2 += template2();
       }
-	  //Se insertan los datos en la tabla de Past Events
+      //Se insertan los datos en la tabla de Past Events
       tablaPast.innerHTML = subirTabla2;
     })
     .catch((error) => console.error(error));
 }
 datosDeApiJson();
-
