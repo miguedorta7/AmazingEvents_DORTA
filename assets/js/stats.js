@@ -38,13 +38,11 @@ function datosDeApiJson() {
         return resultado;
       }
 
-      console.log(resultadosEventos());
-
       //Variable que obtiene los resultados de mayor capacidad
       const resultadoMayorCapacidad = datosEvent.events
         .sort((evento1, evento2) => evento1.capacity - evento2.capacity)
         .slice(-1);
-      //Variable que obtiene los eventos de mayor asistencia
+      //Variable que obtiene los eventos de menor asistencia
       const eventoMenorAsistencia = resultadosEventos()[0];
       console.log(eventoMenorAsistencia);
       //Variable que obtiene los eventos de mayor asistencia

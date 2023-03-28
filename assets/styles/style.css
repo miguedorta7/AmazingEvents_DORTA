@@ -4,8 +4,11 @@
     box-sizing: border-box;
 }
 
+
 body {
     background-color: rgb(33, 30, 30) !important;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -191,6 +194,7 @@ body {
 
 }
 
+
 main{
     display: flex;
     flex-wrap:wrap;
@@ -230,6 +234,7 @@ footer {margin-top: 0vh;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 
@@ -413,6 +418,12 @@ footer {margin-top: 0vh;
   /***************************************** Details ****************************************/
 
   
+  .body-details{
+    display: flex;
+    flex-direction: column;
+  }
+
+
   .div-details{
       width: 100% !important;
       min-height: 470px;
@@ -427,11 +438,12 @@ footer {margin-top: 0vh;
     }
     
     .img-details{
-        width: 400px !important;
+        width: 600px !important;
         min-height: 400px;
         background-size: cover;
         position: relative;
         right:10px;
+        object-fit:cover
   }
 
   .card-body-datails{height:400px;
@@ -462,8 +474,11 @@ footer {margin-top: 0vh;
 }
 
 .footer-details{
-    margin-top: 99px;
+    margin-top: auto;
   }
+
+
+
 
   /***************************************** Stats ****************************************/
  
@@ -514,3 +529,5 @@ footer {margin-top: 0vh;
         margin-top: 0px;
     }
 }
+
+
